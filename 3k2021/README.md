@@ -298,7 +298,7 @@ I used the documents referenced below and fontforge for debugging.
 ```      
 
 
-* Function 40 is the implementation of 
+* Function 40 is the implementation of XOR suggested by our team mate KOOLI.
 
 ```python
 lookup = [[0, 1], [1, 0]]
