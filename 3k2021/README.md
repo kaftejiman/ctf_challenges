@@ -1,7 +1,15 @@
-- Check function code
+*References*
+
+  * [The TrueType Instruction Set](https://docs.microsoft.com/en-us/typography/opentype/spec/tt_instructions)
+
+  * [Instruction Set Summary](https://developer.apple.com/fonts/TrueType-Reference-Manual/RM07/appendixA.html)
+  * [Challenge Font in XML text format](https://github.com/kaftejiman/ctf_challenges/blob/main/3k2021/base.xml)
+
+*Input Check*
+
+* Check function
 
 ```
-
       /* check function */
       PUSH[ ]
           43
@@ -278,80 +286,33 @@
           SWAP[ ] /* check_bit = 0 */
           WCVTP[ ]
       ENDF[ ]
-      
+```      
 
-      PUSH[ ]
-        44
-      /* check on sums xor function */
-      /* loop through sums, xors all */
-      /* compare against preset xor value */
-      FDEF[ ]
-        PUSH[ ]
-          131
-          0
-        WCVTP[ ]
-        PUSH[ ]
-          130
-          50
-        WCVTP[ ] /* store idx */
-        PUSH[ ] /* loop: */
-          130
-        RCVT[ ]
-        DUP[ ]
-        PUSH[ ]
-          77
-        LTEQ[ ]
-        IF[ ]
-          RCVT[ ]
-          PUSH[ ]
-            131
-          RCVT[ ] /* res */
-          PUSH[ ]
-            40
-          CALL[ ] /* res ^ val[idx] */
-          PUSH[ ]
-            131
-          SWAP[ ]
-          WCVTP[ ] /* res = res ^ sums[idx] */
-          PUSH[ ]
-            130
-          RCVT[ ]
-          PUSH[ ]
-            1
-          ADD[ ]
-          PUSH[ ]
-            130
-          SWAP[ ]
-          WCVTP[ ]
-          PUSH[ ]
-            -33 /* loop */
-          JMPR[ ]
-        ELSE[ ]
-          PUSH[ ]
-          132
-          RCVT[ ] /* read pre-set xor */
-          PUSH[ ]
-            131
-          RCVT[ ]
-          EQ[ ]
-          IF[ ]
-            PUSH[ ]
-              1
-            PUSH[ ]
-              8 /* exit */
-            JMPR[ ]
-          ELSE[ ]
-            PUSH[ ]
-              0
-            PUSH[ ]
-              2 /* exit */
-            JMPR[ ]
-          EIF[ ]
-        EIF[ ]
-      ENDF[ ]
+
+* Function 40 is the implementation of 
+
+```python
+lookup = [[0, 1], [1, 0]]
+
+def xor(x , y):
+    res = 0
+    bit = 0
+    while x != 0 or y != 0:
+        xx = x // 2
+        x_bit = x - xx*2 #get lsb of x
+        yy = y // 2
+        y_bit = y - yy*2 #get lsb of y
+        tmp = lookup[x_bit][y_bit]
+        for _ in range(bit):
+            tmp *= 2
+        res += tmp
+        x //= 2
+        y //= 2
+        bit += 1
+    return res
 ```
 
-- Flag generation
+*Flag generation*
 
 ```python
 
@@ -371,7 +332,7 @@ for cnt in range(1, 15):
     print("[{}, {}, {}, {}, {}, {}],".format(i, j, k, l, m, target), end='')
 ```
 
-- Target constraints
+* Target constraints
 
 ```
 #==> TARGET: [13163, 31592, 28528, 25951, 26996, 24439, 24947, 24422, 30062, 24436, 28511, 29551, 30060, 30333]
@@ -395,7 +356,7 @@ cvt: .. constraints ..
 sum xors = 32513
 ```
 
-- Puts correct flag in memory.
+* Helper function puts correct flag in memory
 
 ```
       FDEF[ ] /* test function */
