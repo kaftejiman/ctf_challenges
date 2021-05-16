@@ -1,11 +1,20 @@
-*References*
+**Challenge**
 
+Can you help me fix my grandfathers TV?
+
+[Hi](https://github.com/kaftejiman/ctf_challenges/tree/main/3k2021/helloworld)
+
+
+**References**
+
+I used the documents referenced below and fontforge for debugging.
+
+  * [FontForge](https://fontforge.org/en-US/)
   * [The TrueType Instruction Set](https://docs.microsoft.com/en-us/typography/opentype/spec/tt_instructions)
-
   * [Instruction Set Summary](https://developer.apple.com/fonts/TrueType-Reference-Manual/RM07/appendixA.html)
   * [Challenge Font in XML text format](https://github.com/kaftejiman/ctf_challenges/blob/main/3k2021/base.xml)
 
-*Input Check*
+**Input Check**
 
 * Check function
 
@@ -312,7 +321,7 @@ def xor(x , y):
     return res
 ```
 
-*Flag generation*
+**Flag generation**
 
 ```python
 
