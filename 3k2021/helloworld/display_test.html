@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+
+@font-face {
+  font-family: "HelloWorld";
+  src: url("base.ttf");
+  font-weight: normal;
+  font-style: normal;
+  text-rendering: optimizeLegibility; 
+}
+
+#text
+{
+    z-index:100;
+    display: inline-block;
+  	font-family: "HelloWorld";
+    position:absolute;    
+    font-size:100px;
+    line-height: 120%; 
+    left:250px;
+    top:150px;
+    text-align: center;
+}
+
+
+.container{
+  position: relative;
+}
+
+.tv{
+  position: absolute;
+  top: 40%;
+  left: 15%;
+  transform: translate(-15%, -40%);
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.2) 33.33333%, rgba(255, 255, 255, 0.4) 33.33333%, rgba(255, 255, 255, 0.4) 66.66666%, rgba(255, 255, 255, 0.6) 66.66666%), linear-gradient(to right, rgba(255, 0, 0, 0.7) 33.33333%, rgba(0, 255, 0, 0.7) 33.33333%, rgba(0, 255, 0, 0.7) 66.66666%, rgba(0, 0, 255, 0.7) 66.66666%);
+  background-size: 3px 3px;
+  mix-blend-mode: multiply;
+}
+
+#image
+{    
+    position:absolute;
+    left:0;
+    top:0;
+}
+
+body {
+  background: #222;
+  color: #fff;
+  text-shadow: 2px 0 rgba(255, 0, 0, 0.9), -2px 0 rgba(0, 0, 255, 0.9);
+  padding: 40px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">	
+<div class="tv">
+  <img id="image" src="vintage_tv.png"/>
+  <p id="text">
+  	©
+  </p>
+</div>
+</div>
+<br>
+</body>
+</html>
