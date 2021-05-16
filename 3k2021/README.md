@@ -362,7 +362,7 @@ cvt: .. constraints ..
 279: [5, 5, 11, 9, 6, 19816],
 
 
-sum xors = 32513
+xor of targets = 32513
 ```
 
 * Helper function puts correct flag in memory
